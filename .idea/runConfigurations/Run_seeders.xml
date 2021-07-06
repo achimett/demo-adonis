@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run seeders" type="NodeJSConfigurationType" node-parameters="ace db:seed" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>
