@@ -28,19 +28,21 @@ Route.get('/employees/:id', 'EmployeesController.one') //prettifier-ignore
     cast: (id: string) => Number(id),
   });
 
-Route.post('/employees', 'EmployeesController.newEmployee');
+Route.post('/employees', 'EmployeesController.newEmployee').middleware('auth');
 
 Route.put('/employees/:id', 'EmployeesController.replaceEmployee') //prettifier-ignore
   .where('id', {
     match: /^[0-9]+$/,
     cast: (id: string) => Number(id),
-  });
+  })
+  .middleware('auth');
 
 Route.delete('/employees/:id', 'EmployeesController.deleteEmployee') //prettifier-ignore
   .where('id', {
     match: /^[0-9]+$/,
     cast: (id: string) => Number(id),
-  });
+  })
+  .middleware('auth');
 
 Route.get('/departments', 'DepartmentsController.all');
 
@@ -56,10 +58,16 @@ Route.put('/departments/:id', 'DepartmentsController.replaceDepartment') //prett
   .where('id', {
     match: /^[0-9]+$/,
     cast: (id: string) => Number(id),
-  });
+  })
+  .middleware('auth');
 
 Route.delete('/departments/:id', 'DepartmentsController.deleteDepartment') //prettifier-ignore
   .where('id', {
     match: /^[0-9]+$/,
     cast: (id: string) => Number(id),
-  });
+  })
+  .middleware('auth');
+
+Route.post('/login', 'UsersController.login');
+
+Route.post('/logout', 'UsersController.logout');
