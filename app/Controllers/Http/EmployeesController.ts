@@ -12,17 +12,17 @@ export default class EmployeesController {
 
   public async newEmployee({ request, response }: HttpContextContract) {
     const employee: Employee = new Employee();
-    employee.firstName = request.body().firstName;
-    employee.lastName = request.body().lastName;
-    employee.departmentId = request.body().departmentId;
+    employee.firstName = request.input('firstName');
+    employee.lastName = request.input('lastName');
+    employee.departmentId = request.input('departmentId');
     return response.created(await employee.save());
   }
 
   public async replaceEmployee({ request, response, params }: HttpContextContract) {
     const employee = await Employee.findBy('id', params.id);
-    employee!.firstName = request.body().firstName;
-    employee!.lastName = request.body().lastName;
-    employee!.departmentId = request.body().departmentId;
+    employee!.firstName = request.input('firstName');
+    employee!.lastName = request.input('lastName');
+    employee!.departmentId = request.input('departmentId');
     return response.ok(await employee?.save());
   }
 
